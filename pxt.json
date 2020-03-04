@@ -5,7 +5,8 @@
         "device": "*",
         "controller": "*",
         "darts": "*",
-        "color-coded-tilemap": "*"
+        "color-coded-tilemap": "*",
+        "animation": "*"
     },
     "files": [
         "main.blocks",
