@@ -38,6 +38,30 @@ e e e e e e e e e e e e e e e e
 e e e e e e e e e e e e e f e e 
 `
 }
+function bad_guy () {
+    Villan = sprites.create(img`
+. . . . . . 1 1 1 1 1 1 1 . . . . 
+. . . . . . 1 f f 1 f f 1 . . . . 
+. . . . . . 1 f f 1 f f 1 . . . . 
+. . . . . . 1 f f 1 f f 1 . . . . 
+. . . . . . 1 f f 1 f f 1 . 1 1 . 
+. . . . . . 1 1 1 1 1 1 1 . f 1 1 
+. . . . . . 2 2 2 2 2 2 1 . f 1 1 
+. . . . . 2 e 2 2 2 2 e 2 . f 1 1 
+. . . . 2 2 2 e 2 2 e 2 2 d d . . 
+. . . d d 2 2 2 e e 2 2 d d f . . 
+. . d d 2 2 2 2 e e 2 2 2 . . . . 
+. . d . . 2 2 2 e e 2 2 2 . . . . 
+. . . . . . 8 8 8 8 8 8 . . . . . 
+. . . . . . 8 8 . . 8 8 . . . . . 
+. . . . . . 8 8 . . 8 8 . . . . . 
+. . . . . . 8 8 . . 8 8 . . . . . 
+. . . . . f f f . . f f f . . . . 
+`, SpriteKind.Player)
+    Villan.setPosition(400, 600)
+    Villan.follow(Carlos, 60)
+    Villan.setKind(SpriteKind.Enemy)
+}
 function main_character () {
     Carlos = sprites.create(img`
 . . . . . f f f f f . . . . . . . 
@@ -63,6 +87,26 @@ function main_character () {
     Carlos.setPosition(400, 750)
     Carlos.setKind(SpriteKind.Player)
 }
+function defense_gun () {
+    mySprite = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Projectile)
+}
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     Villan,
@@ -84,7 +128,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . 8 8 8 8 8 8 . . . . . 
 . . . . . . 8 8 8 8 8 8 . . . . . 
 . . . . . f f f f . f f . . . . . 
-`, img`
+`,img`
 . . . . . . 1 1 1 1 1 1 1 . . . . 
 . . . . . . 1 f f 1 1 1 1 . . . . 
 . . . . . . 1 f f 1 1 1 1 . . . . 
@@ -102,7 +146,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . 8 8 8 8 8 8 . . . . . 
 . . . . . f f f f 8 8 8 . . . . . 
 . . . . . . . . . . f f . . . . . 
-`, img`
+`,img`
 . . . . . . 1 1 1 1 1 1 1 . . . . 
 . . . . . . 1 f f 1 1 1 1 . . . . 
 . . . . . . 1 f f 1 1 1 1 . . . . 
@@ -146,7 +190,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . 8 8 8 8 . . . . . . . 
 . . . . . . 8 8 8 8 . . . . . . . 
 . . . . . . f f f f . . . . . . . 
-`, img`
+`,img`
 . . . . . f f f f f f . . . . . . 
 . . . . f f d d d f f f . . . . . 
 . . . . f d 1 d 1 d f f . . . . . 
@@ -164,7 +208,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . 8 8 8 8 . . . . . . . 
 . . . . . . f f 8 8 . . . . . . . 
 . . . . . . . . f f . . . . . . . 
-`, img`
+`,img`
 . . . . . f f f f f f . . . . . . 
 . . . . f f d d d f f f . . . . . 
 . . . . f d 1 d 1 d f f . . . . . 
@@ -187,50 +231,6 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
-function defense_gun () {
-    mySprite = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Projectile)
-}
-function bad_guy () {
-    Villan = sprites.create(img`
-. . . . . . 1 1 1 1 1 1 1 . . . . 
-. . . . . . 1 f f 1 f f 1 . . . . 
-. . . . . . 1 f f 1 f f 1 . . . . 
-. . . . . . 1 f f 1 f f 1 . . . . 
-. . . . . . 1 f f 1 f f 1 . 1 1 . 
-. . . . . . 1 1 1 1 1 1 1 . f 1 1 
-. . . . . . 2 2 2 2 2 2 1 . f 1 1 
-. . . . . 2 e 2 2 2 2 e 2 . f 1 1 
-. . . . 2 2 2 e 2 2 e 2 2 d d . . 
-. . . d d 2 2 2 e e 2 2 d d f . . 
-. . d d 2 2 2 2 e e 2 2 2 . . . . 
-. . d . . 2 2 2 e e 2 2 2 . . . . 
-. . . . . . 8 8 8 8 8 8 . . . . . 
-. . . . . . 8 8 . . 8 8 . . . . . 
-. . . . . . 8 8 . . 8 8 . . . . . 
-. . . . . . 8 8 . . 8 8 . . . . . 
-. . . . . f f f . . f f f . . . . 
-`, SpriteKind.Player)
-    Villan.setPosition(400, 600)
-    Villan.follow(Carlos, 60)
-    Villan.setKind(SpriteKind.Enemy)
-}
 function background () {
     scene.setTileMap(img`
 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
@@ -381,7 +381,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . 8 8 8 8 8 8 . . . . . 
 . . . . . . 8 8 8 8 8 8 . . . . . 
 . . . . . . f f f . f f f . . . . 
-`, img`
+`,img`
 . . . . . . 1 1 1 1 1 1 1 . . . . 
 . . . . . . 1 1 1 1 f f 1 . . . . 
 . . . . . . 1 1 1 1 f f 1 . . . . 
@@ -399,7 +399,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . 8 8 8 8 8 8 . . . . . 
 . . . . . . 8 8 8 8 f f f . . . . 
 . . . . . . f f f . . . . . . . . 
-`, img`
+`,img`
 . . . . . . 1 1 1 1 1 1 1 . . . . 
 . . . . . . 1 1 1 1 f f 1 . . . . 
 . . . . . . 1 1 1 1 f f 1 . . . . 
@@ -443,7 +443,7 @@ controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . . 8 8 8 f . . . . . . 
 . . . . . . . 8 8 8 . . . . . . . 
 . . . . . . . f f f f . . . . . . 
-`, img`
+`,img`
 . . . . . f f f f f f . . . . . . 
 . . . . f f f f f f d . . . . . . 
 . . . . f f f f f d 1 . . . . . . 
@@ -461,7 +461,7 @@ controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . . 8 8 f f . . . . . . 
 . . . . . . f 8 8 . . . . . . . . 
 . . . . . . f f f . . . . . . . . 
-`, img`
+`,img`
 . . . . . f f f f f f . . . . . . 
 . . . . f f f f f f d . . . . . . 
 . . . . f f f f f d 1 . . . . . . 
@@ -508,7 +508,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . 8 8 8 8 8 8 . . . . . 
 . . . . . . 8 8 8 8 8 8 . . . . . 
 . . . . . . f f f f f f . . . . . 
-`, img`
+`,img`
 . . . . . . 1 1 1 1 1 1 . . . . . 
 . . . . . . 1 1 1 1 1 1 . . . . . 
 . . . . . . 1 1 1 1 1 1 . . . . . 
@@ -526,7 +526,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . 8 8 8 8 8 8 . . . . . 
 . . . . . . 8 8 8 f f f . . . . . 
 . . . . . . f f f . . . . . . . . 
-`, img`
+`,img`
 . . . . . . 1 1 1 1 1 1 . . . . . 
 . . . . . . 1 1 1 1 1 1 . . . . . 
 . . . . . . 1 1 1 1 1 1 . . . . . 
@@ -550,8 +550,8 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     )
 })
 let mySprite: Sprite = null
-let Villan: Sprite = null
 let Carlos: Sprite = null
+let Villan: Sprite = null
 main_character()
 background()
 bad_guy()
